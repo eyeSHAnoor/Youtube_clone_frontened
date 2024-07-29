@@ -1,3 +1,5 @@
+import Tweets from "./Tweets";
+
 const Profile = () => {
   return (
     <>
@@ -10,7 +12,7 @@ const Profile = () => {
         <img
           src="https://images.pexels.com/photos/20877343/pexels-photo-20877343/free-photo-of-smiling-mother-and-son-hugging.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
           alt="Full Circle"
-          class="w-64 h-64 rounded-full border-4 border-black  absolute bottom-28 ml-6"
+          class="w-64 h-64 rounded-full border-4 border-black  absolute bottom-44 ml-6"
         />
         <div className="text-white ml-72">
           <h3 className="text-2xl font-bold">Ayesha Noor</h3>
@@ -33,6 +35,7 @@ const Profile = () => {
             Tweets
           </button>
         </div>
+        <Tweets />
       </div>
     </>
   );
