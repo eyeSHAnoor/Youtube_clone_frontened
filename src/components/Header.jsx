@@ -10,10 +10,10 @@ const Header = ({ toggleSidebar }) => {
     <>
       <header className="bg-custom-black p-4 flex justify-between items-center w-screen">
         <div className="flex items-center space-x-6">
-          <button onClick={toggleSidebar} className="text-white">
+          <button onClick={toggleSidebar} className="text-purple-500">
             <GiHamburgerMenu className="h-6 w-6 " />
           </button>
-          <div className="text-white md:text-4xl sm:text-2xl font-bold italic">
+          <div className="text-purple-700 md:text-4xl sm:text-2xl font-bold italic">
             Play_Videos
           </div>
         </div>
@@ -31,14 +31,15 @@ const Header = ({ toggleSidebar }) => {
           >
             <IoCloudUploadOutline />
           </button>
-          <button className="bg-custom-black border border-purple-500 text-purple-500 px-4 py-2 rounded-md">
+          <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
             Login
           </button>
-          <button className="bg-custom-black border border-purple-500 text-purple-500 px-4 py-2 rounded-md">
+          <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
             Sign Up
           </button>
         </div>
       </header>
+      <div className=" w-full px-4 border-b-2 border-purple-500"></div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <UploadForm />
       </Modal>

@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./components/Profile.jsx";
 import Login from "./components/Login.jsx";
 import VideoList from "./components/VideoList.jsx";
+import PlayVideo from "./components/PlayVideo.jsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
         element: <VideoList />,
       },
     ],
+  },
+  {
+    path: "/play-video",
+    element: <PlayVideo />,
   },
 ]);
 
