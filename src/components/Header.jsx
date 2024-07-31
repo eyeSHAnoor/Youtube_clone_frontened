@@ -3,6 +3,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Modal from "./Modal";
 import UploadForm from "./UploadForm";
+import { Link } from "react-router-dom";
+import { CgProfile } from "react-icons/cg";
 
 const Header = ({ toggleSidebar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,12 +33,21 @@ const Header = ({ toggleSidebar }) => {
           >
             <IoCloudUploadOutline />
           </button>
-          <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
-            Login
-          </button>
-          <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
-            Sign Up
-          </button>
+          <Link to="/login">
+            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
+              Login
+            </button>
+          </Link>
+          <Link to="/sign-up">
+            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
+              Sign Up
+            </button>
+          </Link>
+          <Link to="/profile">
+            <button className="text-4xl text-purple-500 pr-5 ">
+              <CgProfile />
+            </button>
+          </Link>
         </div>
       </header>
       <div className=" w-full px-4 border-b-2 border-purple-500"></div>

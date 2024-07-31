@@ -4,8 +4,7 @@ import { MdDone } from "react-icons/md";
 const CommentAdd = () => {
   return (
     <>
-      {" "}
-      <div className="h-fit w-full mx-14 mt-5  max-w-full flex -ml-0  ">
+      <div className="h-fit w-full mx-14 mt-5 bg-gray-600 p-3 rounded-2xl max-w-full flex -ml-0 shadow-2xl ">
         <div className="h-20 mt-4  w-20 ">
           <img
             src=""

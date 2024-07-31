@@ -2,6 +2,7 @@ import React from "react";
 import { IoHomeOutline } from "react-icons/io5";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { FaHistory } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ isOpen }) => {
   return (
@@ -11,14 +12,16 @@ const Sidebar = ({ isOpen }) => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="relative w-64  bg-custom-black text-white h-screen ">
+        <div className=" w-64  bg-custom-black text-white h-screen ">
           <div className="p-10">
             <ul className="space-y-7">
               <li className="flex items-center space-x-2">
                 <IoHomeOutline className="text-white h-8 w-8" />
-                <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
-                  Home
-                </button>
+                <Link to="/home">
+                  <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
+                    Home
+                  </button>
+                </Link>
               </li>
 
               <li className="flex items-center space-x-2">

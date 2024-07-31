@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
   return (
@@ -14,22 +15,24 @@ const VideoCard = ({ video }) => {
             {video.duration}
           </p>
         </div>
-        <div className="flex ml-2 mt-2 text-white">
-          <div className="h-10 w-10 bg-black rounded-full">
-            <img
-              src={video.avatar}
-              alt=""
-              className="w-full h-full rounded-full"
-            />
+        <Link to="/play-video">
+          <div className="flex ml-2 mt-2 text-white">
+            <div className="h-10 w-10 bg-black rounded-full">
+              <img
+                src={video.avatar}
+                alt=""
+                className="w-full h-full rounded-full"
+              />
+            </div>
+            <div className=" pl-4">
+              <h1 className="font-bold uppercase text-xl">{video.title}</h1>
+              <p className="text-gray-400">
+                <span>{video.views} </span>Views
+              </p>
+              <h6 className="font-bold -mt-1">{video.owner}</h6>
+            </div>
           </div>
-          <div className=" pl-4">
-            <h1 className="font-bold uppercase text-xl">{video.title}</h1>
-            <p className="text-gray-400">
-              <span>{video.views} </span>Views
-            </p>
-            <h6 className="font-bold -mt-1">{video.owner}</h6>
-          </div>
-        </div>
+        </Link>
       </div>
     </>
   );
