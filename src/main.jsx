@@ -8,6 +8,9 @@ import Login from "./components/Login.jsx";
 import VideoList from "./components/VideoList.jsx";
 import PlayVideo from "./components/PlayVideo.jsx";
 import SignUp from "./components/SignUp.jsx";
+import { AuthProvider } from "./store/AuthProvider.jsx";
+import ChangePwd from "./components/ChangePwd.jsx";
+import Logout from "./components/Logout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,16 +33,26 @@ const router = createBrowserRouter([
         path: "/sign-up",
         element: <SignUp />,
       },
+      {
+        path: "/play-video",
+        element: <PlayVideo />,
+      },
+      {
+        path: "/forgot-password",
+        element: <ChangePwd />,
+      },
+      {
+        path: "/logout",
+        element: <Logout />,
+      },
     ],
-  },
-  {
-    path: "/play-video",
-    element: <PlayVideo />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );

@@ -12,7 +12,7 @@ const App = () => {
     <div className="bg-custom-black">
       <Header toggleSidebar={toggleSidebar} />
       <div className="flex">
-        <Sidebar isOpen={isSidebarOpen} />
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <Outlet />
       </div>
     </div>

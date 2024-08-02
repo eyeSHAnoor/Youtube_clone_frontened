@@ -28,23 +28,23 @@ const Header = ({ toggleSidebar }) => {
         </div>
         <div className="flex space-x-4">
           <button
-            className="text-4xl text-purple-500 pr-5 "
+            className="text-4xl text-purple-500 pr-5 hover:text-purple-600"
             onClick={() => setIsModalOpen(true)}
           >
             <IoCloudUploadOutline />
           </button>
           <Link to="/login">
-            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
+            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer hover:bg-purple-600">
               Login
             </button>
           </Link>
           <Link to="/sign-up">
-            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer">
+            <button className="text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer hover:bg-purple-600">
               Sign Up
             </button>
           </Link>
           <Link to="/profile">
-            <button className="text-4xl text-purple-500 pr-5 ">
+            <button className="text-4xl text-purple-500 pr-5 hover:text-purple-600 ">
               <CgProfile />
             </button>
           </Link>
