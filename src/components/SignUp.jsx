@@ -67,7 +67,7 @@ const SignUp = () => {
         <img src={cover} alt="" className="object-cover h-full w-full" />
       </div>
 
-      <div className="relative w-64 h-64 rounded-full border-4 bg-black border-black bottom-28 ml-6">
+      <div className="relative w-1/5 md:h-64 sm:h-32 rounded-full border-4 bg-black border-black md:bottom-28 sm:bottom-14 ml-6">
         <label
           htmlFor="avatar"
           className="relative flex items-center justify-center h-full"

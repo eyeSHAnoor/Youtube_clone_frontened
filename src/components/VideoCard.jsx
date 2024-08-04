@@ -15,11 +15,11 @@ const VideoCard = ({ video }) => {
             {video.duration}
           </p>
         </div>
-        <Link to="/play-video">
+        <Link to="/play-video" state={{ video }}>
           <div className="flex ml-2 mt-2 text-white">
             <div className="h-10 w-10 bg-black rounded-full">
               <img
-                src={video.avatar}
+                src={video.owner.avatar}
                 alt=""
                 className="w-full h-full rounded-full"
               />
@@ -29,7 +29,7 @@ const VideoCard = ({ video }) => {
               <p className="text-gray-400">
                 <span>{video.views} </span>Views
               </p>
-              <h6 className="font-bold -mt-1">{video.owner}</h6>
+              <h6 className="font-bold -mt-1">{video.owner.username}</h6>
             </div>
           </div>
         </Link>

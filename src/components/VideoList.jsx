@@ -1,21 +1,28 @@
+import axios from "axios";
+import { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import VideoCard from "./VideoCard";
 
 const VideoList = () => {
-  const video = {
-    thumbnail:
-      "https://images.pexels.com/photos/27050027/pexels-photo-27050027/free-photo-of-frame-the-view-of-the-new-mosque-from-karakoy-pier.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    duration: "20:45",
-    avatar:
-      "https://images.pexels.com/photos/20741817/pexels-photo-20741817/free-photo-of-clear-sky-over-cherry-tree-in-spring.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    title: "This is amazing",
-    views: "10.3k",
-    owner: "CodeMaster",
-  };
+  const initialVideo = useLoaderData();
+  const [video, setVideo] = useState(initialVideo);
+
   return (
     <div className="m-14">
-      <VideoCard video={video} />
+      {video.map((videoData, key) => (
+        <VideoCard video={videoData} key={key} />
+      ))}
     </div>
   );
+};
+
+export const videoLoader = async () => {
+  const response = await axios.get(
+    "http://localhost:8000/api/v1/videos/get-public-videos"
+  );
+
+  // console.log(response);
+  return response?.data?.data;
 };
 
 export default VideoList;

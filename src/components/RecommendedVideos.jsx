@@ -1,25 +1,33 @@
 import React from "react";
+import useUploadTime from "../Hooks/useUploadTime";
+import { Link } from "react-router-dom";
 
-const RecommendedVideos = () => {
+const RecommendedVideos = ({ video }) => {
+  const getTimeDifference = useUploadTime();
+
   return (
-    <div className="h-36 w-2/5 mx-14 mt-5  max-w-full md:flex hidden ">
+    <Link
+      to="/play-video"
+      state={{ video }}
+      className="h-36 w-2/5 mx-14 mt-5  max-w-full md:flex hidden "
+    >
       <div className="h-full  w-1/2 ">
         <img
-          src="https://images.pexels.com/photos/27364090/pexels-photo-27364090/free-photo-of-a-man-in-a-black-shirt-and-white-pants-standing-on-a-beach.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          src={video.thumbnail}
           alt=""
           className="object-cover h-full w-full rounded-xl"
         />
       </div>
+
       <div className="h-4/5  w-1/2 mx-4 text-white font-bold pt-2">
-        <h2 className="text-2xl">
-          This is Heading Lorem ipsum dolor sit amet.
-        </h2>
-        <h2 className="text-gray-400">Marker Notion</h2>
+        <h2 className="text-2xl">{video.title}</h2>
+        <h2 className="text-gray-400">{video.owner.username}</h2>
         <h2 className="text-gray-400">
-          <span>4M</span>views ,<span>14h</span>ago
+          <span>{video.views || 0}</span>views ,
+          <span>{getTimeDifference(video.createdAt)}</span>
         </h2>
       </div>
-    </div>
+    </Link>
   );
 };
 

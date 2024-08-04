@@ -5,7 +5,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Profile from "./components/Profile.jsx";
 import Login from "./components/Login.jsx";
-import VideoList from "./components/VideoList.jsx";
+import VideoList, { videoLoader } from "./components/VideoList.jsx";
 import PlayVideo from "./components/PlayVideo.jsx";
 import SignUp from "./components/SignUp.jsx";
 import { AuthProvider } from "./store/AuthProvider.jsx";
@@ -28,6 +28,7 @@ const router = createBrowserRouter([
       {
         path: "/home",
         element: <VideoList />,
+        loader: videoLoader,
       },
       {
         path: "/sign-up",
