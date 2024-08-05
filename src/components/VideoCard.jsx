@@ -5,14 +5,14 @@ const VideoCard = ({ video }) => {
   return (
     <>
       <div className="h-80 w-80 border-3 ">
-        <div className="bg-black h-2/3 relative">
+        <div className="bg-black h-2/3 relative rounded-xl">
           <img
             src={video.thumbnail}
             alt=""
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-xl"
           />
           <p className="absolute bottom-2 right-2 text-white bg-black bg-opacity-50 px-2 py-1 rounded">
-            {video.duration}
+            {video.duration.toFixed(2)}
           </p>
         </div>
         <Link to="/play-video" state={{ video }}>

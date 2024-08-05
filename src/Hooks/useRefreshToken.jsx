@@ -1,6 +1,6 @@
 import axios from "axios";
 import useAuth from "./useAuth";
-
+import { Link } from "react-router-dom";
 const useRefreshToken = () => {
   const { setAuth } = useAuth();
 
@@ -17,6 +17,10 @@ const useRefreshToken = () => {
           withCredentials: true, // Ensures cookies are sent with the request
         }
       );
+
+      {
+        !response.data && <Link to="/login"></Link>;
+      }
 
       // Extract access token and refresh token from the response
       const { accessToken, refreshToken } = response.data.data;

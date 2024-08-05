@@ -9,7 +9,7 @@ const RecommendedVideos = ({ video }) => {
     <Link
       to="/play-video"
       state={{ video }}
-      className="h-36 w-2/5 mx-14 mt-5  max-w-full md:flex hidden "
+      className="h-36  mx-14 mt-5  max-w-full md:flex  "
     >
       <div className="h-full  w-1/2 ">
         <img
