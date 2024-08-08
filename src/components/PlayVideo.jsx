@@ -40,7 +40,7 @@ const PlayVideo = () => {
       }
     };
     findStatus();
-  });
+  }, [axiosPrivate]);
 
   const [comment, setComment] = useState([]);
   const [msg, setMsg] = useState("");

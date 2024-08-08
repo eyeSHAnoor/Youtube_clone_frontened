@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Modal from "./Modal";
 import CoverImageChange from "./CoverImageChange";
 import AvatarChange from "./AvatarChange";
+import { Link, Outlet } from "react-router-dom";
 
 const Profile = () => {
   const axiosPrivate = useAxiosPrivate();
@@ -66,12 +67,16 @@ const Profile = () => {
         </div>
 
         <div class="flex justify-around bg-gray-600 p-4 rounded-lg">
-          <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
-            Videos
-          </button>
-          <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
-            Playlist
-          </button>
+          <Link to="/profile/pers-videos">
+            <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Videos
+            </button>
+          </Link>
+          <Link to="/profile/playlist">
+            <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Playlist
+            </button>
+          </Link>
           <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
             Subscribed
           </button>
@@ -79,7 +84,8 @@ const Profile = () => {
             Tweets
           </button>
         </div>
-        <Tweets />
+        {/* <Tweets /> */}
+        <Outlet></Outlet>
       </div>
       <Modal isOpen={isCoverChange} onClose={() => setIsCoverChange(false)}>
         <CoverImageChange onDone={() => setIsCoverChange(false)} />

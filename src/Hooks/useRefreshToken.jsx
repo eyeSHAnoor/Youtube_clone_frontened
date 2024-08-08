@@ -1,8 +1,9 @@
 import axios from "axios";
 import useAuth from "./useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const useRefreshToken = () => {
   const { setAuth } = useAuth();
+  const navigate = useNavigate();
 
   const refresh = async () => {
     try {
@@ -18,8 +19,8 @@ const useRefreshToken = () => {
         }
       );
 
-      {
-        !response.data && <Link to="/login"></Link>;
+      if (!response) {
+        navigate("/login");
       }
 
       // Extract access token and refresh token from the response

@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 import useUploadTime from "../Hooks/useUploadTime";
 
+import { IoAdd } from "react-icons/io5";
+import Modal from "./Modal";
+import ListOfPlayList from "./ListOfPlayList";
+
 const Video = ({ video, handleSubscription, status }) => {
+  const [isPlayListOpen, setIsPlayListOpen] = useState(false);
   const getTimeDifference = useUploadTime();
 
   if (!video) {
@@ -20,7 +25,14 @@ const Video = ({ video, handleSubscription, status }) => {
       </h1>
       <h1 className="pt-4 text-gray-400 font-bold">
         {getTimeDifference(video.createdAt)}
+        <button
+          className="text-white  rounded bg-gray-700 hover:bg-gray-600 p-1 cursor-pointer text-lg float-end"
+          onClick={() => setIsPlayListOpen(true)}
+        >
+          <IoAdd />
+        </button>
       </h1>
+
       <div className="w-full border-b-2 border-purple-500 my-10"></div>
       <div className="w-full h-32 flex">
         <div className="h-20 w-20 bg-black rounded-full">
@@ -38,13 +50,16 @@ const Video = ({ video, handleSubscription, status }) => {
         </div>
         <div className="m-3">
           <button
-            className="text-white font-bold h-14 w-fit rounded bg-purple-500 p-2 cursor-pointer text-lg"
+            className="text-white font-bold h-14 w-fit rounded bg-purple-500 hover:bg-purple-600 p-2 cursor-pointer text-lg"
             onClick={handleSubscription}
           >
             {status}
           </button>
         </div>
       </div>
+      <Modal isOpen={isPlayListOpen} onClose={() => setIsPlayListOpen(false)}>
+        <ListOfPlayList videoId={video._id} />
+      </Modal>
     </>
   );
 };

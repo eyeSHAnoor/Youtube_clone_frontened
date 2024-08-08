@@ -11,6 +11,8 @@ import SignUp from "./components/SignUp.jsx";
 import { AuthProvider } from "./store/AuthProvider.jsx";
 import ChangePwd from "./components/ChangePwd.jsx";
 import Logout from "./components/Logout.jsx";
+import PersonalVideos from "./components/PersonalVideos.jsx";
+import PlayList from "./components/PlayList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +22,16 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+        children: [
+          {
+            path: "pers-videos",
+            element: <PersonalVideos />,
+          },
+          {
+            path: "playlist",
+            element: <PlayList />,
+          },
+        ],
       },
       {
         path: "/login",
