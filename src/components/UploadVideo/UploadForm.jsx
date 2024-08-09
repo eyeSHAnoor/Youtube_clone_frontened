@@ -1,19 +1,28 @@
 import React, { useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const UploadForm = () => {
+  //Aform that is used to upload a video
+  //accept video
   const [video, setVideo] = useState(null);
+  //accept thumbnail
   const [thumbnail, setThumbnail] = useState(null);
+  //accept title
   const [title, setTitle] = useState("");
+  //takes description
   const [description, setDescription] = useState("");
 
+  //takes videoImage as to display on secreen when it is selected
   const [videoImage, setVideoImage] = useState(null);
+  //takes thumbnail as to display on secreen when it is selected
   const [thumbnailImage, setThumbnailImage] = useState(null);
 
+  //stores response once video is uploaded
   const [res, setRes] = useState("");
 
   const axiosPrivate = useAxiosPrivate();
 
+  //set the videoImage
   const handleVideoChange = (e) => {
     const file = e.target.files[0];
     setVideo(file);
@@ -22,6 +31,7 @@ const UploadForm = () => {
     }
   };
 
+  //sets the thumbnail
   const handleThumbnailChange = (e) => {
     const file = e.target.files[0];
     setThumbnail(file);
@@ -30,6 +40,7 @@ const UploadForm = () => {
     }
   };
 
+  //handle uploading video to make it public to all
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -69,6 +80,7 @@ const UploadForm = () => {
 
   return (
     <>
+      {/* checks whether file is uploaded or not */}
       {res === "" ? (
         <>
           <h2 className="text-xl font-bold mb-4 text-white">Upload Video</h2>

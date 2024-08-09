@@ -1,25 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
 import { MdDone } from "react-icons/md";
 
-const CommentAdd = ({ video }) => {
-  const axiosPrivate = useAxiosPrivate();
-
-  const [content, setContent] = useState("");
-
+const CommentAdd = ({ video, handleAddComments, setContent, content }) => {
   const commentRef = useRef();
 
+  //it uses to focus on input field
   useEffect(() => {
     commentRef.current.focus();
   }, []);
 
-  const handleAddComments = async () => {
-    const response = await axiosPrivate.post(
-      `/api/v1/comments/add/${video._id}`,
-      { content }
-    );
-    console.log(response);
-  };
   return (
     <>
       <div className="h-fit w-full mx-14 mt-5 bg-gray-600 p-3 rounded-2xl max-w-full flex -ml-0 shadow-2xl ">

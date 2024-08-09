@@ -9,6 +9,7 @@ const PlayListForm = ({ handleCreatePlayList }) => {
         method="POST"
         onSubmit={(e) => handleCreatePlayList(e)}
       >
+        {/* onSubmit we are sending an event to recieve its target value (values of form) */}
         <label htmlFor="name">Name for PlayList</label>
         <input
           type="text"

@@ -3,6 +3,7 @@ import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
 
 const TweetData = ({ tweet }) => {
+  //Takes tweet (data) from prop and display it for particular tweet
   return (
     <div className="m-10">
       <div className="flex ml-2 mt-2 text-white">

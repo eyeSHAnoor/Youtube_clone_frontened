@@ -1,27 +1,35 @@
 import { useEffect, useRef, useState } from "react";
 import { Form } from "react-router-dom";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const ChangePwd = () => {
+  //Takes the old password
   const [oldPassword, setOldPassword] = useState("");
+
+  //Takes new password
   const [newPassword, setNewPassword] = useState("");
+  //it saves the response that password is successfully changed
   const [res, setRes] = useState("");
 
+  //passwordRef
   const pwdRef = useRef();
 
   const axiosPrivate = useAxiosPrivate();
 
   useEffect(() => {
+    //checks if passwordRef is currently present or not
     if (pwdRef.current) {
       pwdRef.current.focus();
     }
 
+    //set the response to empty after re-rendring
     setRes("");
   }, []);
 
+  //submission button
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(oldPassword, newPassword);
+    // console.log(oldPassword, newPassword);
     try {
       const response = await axiosPrivate.post(
         "/api/v1/users/change-password",
@@ -30,7 +38,7 @@ const ChangePwd = () => {
           newPassword,
         }
       );
-      console.log(response.data.message);
+      // console.log(response.data.message);
       setRes(response.data.message);
     } catch (err) {
       if (err.response) {
@@ -49,6 +57,7 @@ const ChangePwd = () => {
           <div className="text-purple-700 md:text-5xl sm:text-2xl font-bold mb-4 italic">
             Play_Videos
           </div>
+          {/* checks if response present or not otherwise it shows the form to change pwd */}
           {res === "" ? (
             <Form
               method="POST"

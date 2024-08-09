@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//it represents various videoCards
 const VideoCard = ({ video }) => {
   return (
     <>
@@ -15,6 +16,7 @@ const VideoCard = ({ video }) => {
             {video.duration.toFixed(2)}
           </p>
         </div>
+        {/* link the particular video to play-video and sending a stats video of that partcular video clicked */}
         <Link to="/play-video" state={{ video }}>
           <div className="flex ml-2 mt-2 text-white">
             <div className="h-10 w-10 bg-black rounded-full">

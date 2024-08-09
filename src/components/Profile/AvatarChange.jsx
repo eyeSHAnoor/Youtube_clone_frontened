@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const AvatarChange = ({ onDone }) => {
+  //Used to display image after it is selected
   const [avatarURL, setAvatarURL] = useState("");
+  //This is used to send in request body
   const [avatar, setavatar] = useState("");
+  //to display the message after changing
   const [res, setRes] = useState("");
 
   const axiosPrivate = useAxiosPrivate();
 
+  //setAvataUrl with the image that is selected
   const handleavatarFileChange = (e) => {
     const file = e.target.files[0];
     setavatar(file);
@@ -16,6 +20,7 @@ const AvatarChange = ({ onDone }) => {
     }
   };
 
+  //send the request in backened or server
   const handleavatarChange = async () => {
     try {
       if (!avatar) return; // Exit if no file is selected
@@ -27,7 +32,7 @@ const AvatarChange = ({ onDone }) => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data",
+            "Content-Type": "multipart/form-data", //setUp used to send files
           },
         }
       );
@@ -42,6 +47,7 @@ const AvatarChange = ({ onDone }) => {
 
   return (
     <>
+      {/* it checks weather the file is successfully changed or not */}
       {res === "" ? (
         <>
           <div className="w-full h-64 border-4 border-dashed border-white flex items-center justify-center relative">
@@ -56,7 +62,7 @@ const AvatarChange = ({ onDone }) => {
               onChange={handleavatarFileChange}
             />
             <img
-              src={avatarURL}
+              src={avatarURL} //display image
               alt=""
               className="object-avatar h-full w-full absolute inset-0"
             />
@@ -73,7 +79,7 @@ const AvatarChange = ({ onDone }) => {
           {res}
           <button
             className="text-white font-bold h-10 w-full mt-3 rounded bg-purple-500  pl-5 cursor-pointer hover:bg-purple-600"
-            onClick={onDone}
+            onClick={onDone} //close the tab
           >
             Done
           </button>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import Modal from "./Modal";
-import UploadForm from "./UploadForm";
+import UploadForm from "./UploadVideo/UploadForm";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 

@@ -3,16 +3,16 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Profile from "./components/Profile.jsx";
-import Login from "./components/Login.jsx";
-import VideoList, { videoLoader } from "./components/VideoList.jsx";
-import PlayVideo from "./components/PlayVideo.jsx";
-import SignUp from "./components/SignUp.jsx";
+import Profile from "./components/Profile/Profile.jsx";
+import Login from "./components/SignInLogInLogOut/Login.jsx";
+import VideoList, { videoLoader } from "./components/Videos/VideoList.jsx";
+import PlayVideo from "./components/Videos/PlayVideo.jsx";
+import SignUp from "./components/SignInLogInLogOut/SignUp.jsx";
 import { AuthProvider } from "./store/AuthProvider.jsx";
-import ChangePwd from "./components/ChangePwd.jsx";
-import Logout from "./components/Logout.jsx";
-import PersonalVideos from "./components/PersonalVideos.jsx";
-import PlayList from "./components/PlayList.jsx";
+import ChangePwd from "./components/SignInLogInLogOut/ChangePwd.jsx";
+import Logout from "./components/SignInLogInLogOut/Logout.jsx";
+import PersonalVideos from "./components/Profile/PersonalVideos.jsx";
+import PlayList from "./components/Playlist/PlayList.jsx";
 
 const router = createBrowserRouter([
   {

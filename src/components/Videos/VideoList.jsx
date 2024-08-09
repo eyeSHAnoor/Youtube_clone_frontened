@@ -4,7 +4,9 @@ import { useLoaderData } from "react-router-dom";
 import VideoCard from "./VideoCard";
 
 const VideoList = () => {
+  //takes data from loader function
   const initialVideo = useLoaderData();
+  //a video that is initialized with loader data which is then mapped on videoCard
   const [video, setVideo] = useState(initialVideo);
 
   return (
@@ -16,6 +18,7 @@ const VideoList = () => {
   );
 };
 
+// a loader function that loads before component
 export const videoLoader = async () => {
   const response = await axios.get(
     "http://localhost:8000/api/v1/videos/get-public-videos"

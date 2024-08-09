@@ -1,13 +1,14 @@
 import React from "react";
-import useUploadTime from "../Hooks/useUploadTime";
+import useUploadTime from "../../Hooks/useUploadTime";
 import { Link } from "react-router-dom";
 
 const RecommendedVideos = ({ video }) => {
+  //used to get the upload time
   const getTimeDifference = useUploadTime();
 
   return (
     <Link
-      to="/play-video"
+      to="/play-video" // a link in which each recommended video can be clicked to move to play-video
       state={{ video }}
       className="h-36  mx-14 mt-5  max-w-full md:flex  "
     >

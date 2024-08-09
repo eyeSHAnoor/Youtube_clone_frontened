@@ -2,9 +2,10 @@ import React from "react";
 
 import { AiOutlineLike } from "react-icons/ai";
 import { AiOutlineDislike } from "react-icons/ai";
-import useUploadTime from "../Hooks/useUploadTime";
+import useUploadTime from "../../Hooks/useUploadTime";
 
 const CommentsList = ({ comment }) => {
+  //This is used to get how long ago comment is created
   const getTimeDifference = useUploadTime();
   return (
     <>

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const CoverImageChange = ({ onDone }) => {
+  //send the req with body
   const [coverImage, setCoverImage] = useState("");
+  //display the image to improve UE
   const [cover, setCover] = useState("");
+  //to check is response recieved or not
   const [res, setRes] = useState("");
 
   const axiosPrivate = useAxiosPrivate();
 
+  //better UX (as display selected image )
   const handleCoverFileChange = (e) => {
     const file = e.target.files[0];
     setCoverImage(file);
@@ -16,6 +20,7 @@ const CoverImageChange = ({ onDone }) => {
     }
   };
 
+  //send request to server to update coverImage
   const handleCoverChange = async () => {
     try {
       if (!coverImage) return; // Exit if no file is selected

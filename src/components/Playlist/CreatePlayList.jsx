@@ -1,30 +1,16 @@
 import React, { useState } from "react";
 import { IoAdd } from "react-icons/io5";
-import Modal from "./Modal";
+import Modal from "../Modal";
 import PlayListForm from "./PlayListForm";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
 
-const CreatePlayList = () => {
+const CreatePlayList = ({
+  handleCreatePlayList,
+  isCreatePlayListOpen,
+  setIsCreatePlayListOpen,
+  onClose,
+}) => {
+  //is used to check when to display text when it is hovered over button
   const [isHovered, setIsHovered] = useState(false);
-
-  const axiosPrivate = useAxiosPrivate();
-
-  const [isCreatePlayListOpen, setIsCreatePlayListOpen] = useState(false);
-
-  const handleCreatePlayList = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const Data = new FormData(form);
-    const formData = Object.fromEntries(Data.entries());
-
-    console.log(formData);
-    const response = await axiosPrivate.post(
-      "/api/v1/playlist/create",
-      formData
-    );
-
-    console.log(response);
-  };
 
   return (
     <>
@@ -47,10 +33,7 @@ const CreatePlayList = () => {
           <IoAdd />
         </button>
       </div>
-      <Modal
-        isOpen={isCreatePlayListOpen}
-        onClose={() => setIsCreatePlayListOpen(false)}
-      >
+      <Modal isOpen={isCreatePlayListOpen} onClose={onClose}>
         <PlayListForm handleCreatePlayList={handleCreatePlayList} />
       </Modal>
     </>

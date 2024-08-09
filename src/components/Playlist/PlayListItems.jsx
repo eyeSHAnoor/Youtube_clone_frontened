@@ -6,11 +6,12 @@ const PlayListItems = ({
   getVideoStatus,
   status,
 }) => {
+  // THis is used to get status of video (Is it Already added to Playlist or not)
   useEffect(() => {
-    getVideoStatus(playlist._id);
+    getVideoStatus(playlist._id); //we are sending the id of particular playlist to whom to check whether video is added
   }, [status]);
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center mt-4">
       <div className="w-4/5 flex items-center">
         <div className="bg-white h-14 w-1/6 rounded-full">
           <img

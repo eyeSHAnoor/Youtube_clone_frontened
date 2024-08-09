@@ -1,21 +1,24 @@
 import React, { useRef, useState } from "react";
-import useUploadTime from "../Hooks/useUploadTime";
-
+import useUploadTime from "../../Hooks/useUploadTime";
 import { IoAdd } from "react-icons/io5";
-import Modal from "./Modal";
-import ListOfPlayList from "./ListOfPlayList";
+import Modal from "../Modal";
+import ListOfPlayList from "../Playlist/ListOfPlayList";
 
+//This component is used to display the video that is playing
 const Video = ({ video, handleSubscription, status }) => {
-  const [isPlayListOpen, setIsPlayListOpen] = useState(false);
+  //this is used to add particular video to playList
+  const [isAddToPlayListOpen, setIsAddToPlayListOpen] = useState(false);
+  //Get time of upload
   const getTimeDifference = useUploadTime();
 
+  //if no video then return loading
   if (!video) {
-    return <p className="text-white">Loading...</p>; // or return null, or a loading spinner
+    return <p className="text-white">Loading...</p>;
   }
   return (
     <>
       <video
-        src={video.videoFile || ""}
+        src={video.videoFile || ""} //video to play
         className="object-cover h-full w-full rounded-xl"
         controls
       ></video>
@@ -27,7 +30,7 @@ const Video = ({ video, handleSubscription, status }) => {
         {getTimeDifference(video.createdAt)}
         <button
           className="text-white  rounded bg-gray-700 hover:bg-gray-600 p-1 cursor-pointer text-lg float-end"
-          onClick={() => setIsPlayListOpen(true)}
+          onClick={() => setIsAddToPlayListOpen(true)}
         >
           <IoAdd />
         </button>
@@ -57,7 +60,11 @@ const Video = ({ video, handleSubscription, status }) => {
           </button>
         </div>
       </div>
-      <Modal isOpen={isPlayListOpen} onClose={() => setIsPlayListOpen(false)}>
+      {/* a modal to open a new tab over the prev page */}
+      <Modal
+        isOpen={isAddToPlayListOpen}
+        onClose={() => setIsAddToPlayListOpen(false)}
+      >
         <ListOfPlayList videoId={video._id} />
       </Modal>
     </>

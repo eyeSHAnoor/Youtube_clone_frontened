@@ -1,10 +1,12 @@
 import { useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const Logout = ({ onNo }) => {
+  //it stores the response once logout is completed
   const [res, setRes] = useState("");
   const axiosPrivate = useAxiosPrivate();
 
+  //loging out the user as deleting its refreshToken cookie
   const handleLogOut = async () => {
     try {
       const resp = await axiosPrivate.post("/api/v1/users/logout", {});
@@ -18,13 +20,14 @@ const Logout = ({ onNo }) => {
 
   return (
     <>
+      {/* checks if logout is completed or not */}
       {res === "" ? (
         <div className="text-white">
           <h1 className="p-4 mb-14">Are you sure you want to log out?</h1>
           <div className="flex justify-between">
             <button
               className="font-bold h-10 w-1/2 rounded bg-purple-500 p-2 pl-5 cursor-pointer hover:bg-purple-600"
-              onClick={onNo}
+              onClick={onNo} //close the tab
             >
               No
             </button>

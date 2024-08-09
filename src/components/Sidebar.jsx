@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import Modal from "./Modal";
-import Logout from "./Logout";
+import Logout from "./SignInLogInLogOut/Logout";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const [isLogOutOpen, setIsLogOutOpen] = useState(false);

@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import useAxiosPrivate from "../Hooks/useAxiosPrivate";
+import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import PlayListItems from "./PlayListItems";
 import axios from "axios";
 
 const ListOfPlayList = ({ videoId }) => {
   // console.log(videoId);
   const axiosPrivate = useAxiosPrivate();
+  //stores the playlist List
   const [playList, setPlayList] = useState([]);
+  //set status of video is added or not
   const [status, setStatus] = useState();
+  //fetch list of plyalist
   useEffect(() => {
     const getPlayList = async () => {
       const response = await axiosPrivate.get("/api/v1/playlist/get");
@@ -17,6 +20,7 @@ const ListOfPlayList = ({ videoId }) => {
     getPlayList();
   }, [axiosPrivate]);
 
+  //adding particular video to playlist (it takes partcular playlist id from arguments)
   const AddVideoToPlayList = async (playlistId) => {
     const response = await axiosPrivate.post(
       `/api/v1/playlist/add-videos/${playlistId}`,
@@ -25,6 +29,7 @@ const ListOfPlayList = ({ videoId }) => {
     // console.log(response);
   };
 
+  //a func used get status of a video is it added or not
   const getVideoStatus = async (playlistId) => {
     console.log(playlistId, videoId);
     const response = await axios.post(

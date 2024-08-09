@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { MdModeEditOutline } from "react-icons/md";
-import { Form } from "react-router-dom";
 import axios from "axios";
 
 const SignUp = () => {
+  //stores the cover image to display once it selected
   const [cover, setCover] = useState("");
+  //stores the avatar to display once it selected
   const [avatar, setAvatar] = useState("");
 
+  //setting the CoverImage as it selected
   const handleCoverFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -14,6 +16,7 @@ const SignUp = () => {
     }
   };
 
+  //setting the avatar as it selected
   const handleAvatarChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -21,6 +24,7 @@ const SignUp = () => {
     }
   };
 
+  //create a new user as it handles form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -62,9 +66,13 @@ const SignUp = () => {
           name="coverImage"
           id="coverImage"
           className="hidden"
-          onChange={handleCoverFileChange}
+          onChange={handleCoverFileChange} //Setting coverImage
         />
-        <img src={cover} alt="" className="object-cover h-full w-full" />
+        <img
+          src={cover} //display cover Image
+          alt=""
+          className="object-cover h-full w-full"
+        />
       </div>
 
       <div className="relative w-1/5 md:h-64 sm:h-32 rounded-full border-4 bg-black border-black md:bottom-28 sm:bottom-14 ml-6">
@@ -73,6 +81,7 @@ const SignUp = () => {
           className="relative flex items-center justify-center h-full"
         >
           <MdModeEditOutline className="absolute right-1/2 bottom-1/2 text-2xl text-white" />
+          {/* checks it only display text if avatar is not present */}
           {!avatar && (
             <p className="absolute text-center bottom-1 text-white">
               Add an Avatar that is essential to add
@@ -83,10 +92,10 @@ const SignUp = () => {
             name="avatar"
             id="avatar"
             className="hidden"
-            onChange={handleAvatarChange}
+            onChange={handleAvatarChange} //setting avatar
           />
           <img
-            src={avatar}
+            src={avatar} //display avatar for UX
             alt=""
             className="object-cover h-full w-full rounded-full"
           />
