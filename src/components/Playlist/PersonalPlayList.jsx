@@ -12,6 +12,9 @@ const PersonalPlayList = ({ playList, setPlayList }) => {
   //sets the videos of particular playlist
   const [video, setVideo] = useState([]);
 
+  //it stores the playList Id to remove any video from particular playlist through itx id
+  const [playListID, setPlayListID] = useState("");
+
   //handle deleteion of entire playlist
   const handleDeletePlayList = async (playlistID) => {
     const response = await axiosPrivate.delete(
@@ -20,9 +23,21 @@ const PersonalPlayList = ({ playList, setPlayList }) => {
     setPlayList(playList.filter((playlist) => playlist._id !== playlistID));
     console.log(response);
   };
+
+  //it handles how to remove particular video from particular playlist
+  const handleRemoveVideoFromPlayList = async (videoId) => {
+    const response = await axiosPrivate.post(
+      `api/v1/playlist/remove-video/${playListID}`,
+      { videoId }
+    );
+    console.log(response);
+    setVideo(video.filter((video) => video._id !== videoId)); //improve UX
+  };
+
   return (
     <div>
       <>
+        {/* it checks whether a playlist is clicked or not so that to display itx particular videos */}
         {isPlayListClicked ? (
           <>
             <div
@@ -31,10 +46,18 @@ const PersonalPlayList = ({ playList, setPlayList }) => {
             >
               <IoMdArrowRoundBack className="text-5xl p-2 hover:bg-gray-600 cursor-pointer rounded-2xl" />
             </div>
+            {/* is there is video in playlist or not */}
             {video.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-between gap-9 m-14">
                 {video.map((videoData, key) => (
-                  <VideoCard video={videoData} key={key} />
+                  <VideoCard
+                    video={videoData}
+                    key={key}
+                    playListID={playListID}
+                    handleRemoveVideoFromPlayList={
+                      handleRemoveVideoFromPlayList
+                    }
+                  />
                 ))}
               </div>
             ) : (
@@ -52,6 +75,7 @@ const PersonalPlayList = ({ playList, setPlayList }) => {
                 setIsPlayListClicked={setIsPlayListClicked}
                 setVideo={setVideo}
                 handleDeletePlayList={handleDeletePlayList}
+                setPlayListID={setPlayListID}
               ></PersonalPlayListItems>
             ))}
           </>

@@ -24,12 +24,14 @@ const PersonalVideos = () => {
   }, [axiosPrivate]);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-9 m-14">
+    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-9 m-14">
       {/* if personal videos present or not */}
       {persVideos.length > 0 ? (
         persVideos.map((video, key) => <VideoCard video={video} key={key} />)
       ) : (
-        <p>No personal videos available.</p>
+        <p className="text-white text-2xl font-semibold italic">
+          No personal videos available.
+        </p>
       )}
     </div>
   );

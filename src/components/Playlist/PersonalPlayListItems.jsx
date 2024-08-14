@@ -6,6 +6,7 @@ const PersonalPlayListItems = ({
   setIsPlayListClicked,
   setVideo,
   handleDeletePlayList,
+  setPlayListID,
 }) => {
   //tells that the more (three dots) clicked or not
   const [isMenueOpen, setIsMenueOpen] = useState(false);
@@ -14,6 +15,7 @@ const PersonalPlayListItems = ({
   const handlePlayListClicked = () => {
     setIsPlayListClicked(true);
     setVideo(playlist.video);
+    setPlayListID(playlist._id);
   };
 
   //toggle a menue as clicked true or not
@@ -22,7 +24,7 @@ const PersonalPlayListItems = ({
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between cursor-pointer">
       <div
         className="w-full flex items-center mt-10 p-4 hover:bg-gray-600 rounded-xl"
         onClick={handlePlayListClicked}

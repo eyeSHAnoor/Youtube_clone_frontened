@@ -6,10 +6,11 @@ const PlayListItems = ({
   getVideoStatus,
   status,
 }) => {
-  // THis is used to get status of video (Is it Already added to Playlist or not)
+  //getting the status of Video in PlayList
   useEffect(() => {
-    getVideoStatus(playlist._id); //we are sending the id of particular playlist to whom to check whether video is added
-  }, [status]);
+    getVideoStatus(playlist._id);
+  }, [playlist._id]);
+
   return (
     <div className="flex justify-between items-center mt-4">
       <div className="w-4/5 flex items-center">
@@ -32,8 +33,8 @@ const PlayListItems = ({
               ? "bg-gray-400 cursor-not-allowed"
               : "bg-purple-500 hover:bg-purple-700"
           }`}
-          onClick={() => AddVideoToPlayList(playlist._id)}
-          disabled={status}
+          onClick={() => AddVideoToPlayList(playlist._id)} //if video is not added then add it to playlist
+          disabled={status} //if status is false then disabled false and vise versa
         >
           {status ? "added" : "add"}
         </button>

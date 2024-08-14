@@ -3,6 +3,9 @@ import useUploadTime from "../../Hooks/useUploadTime";
 import { IoAdd } from "react-icons/io5";
 import Modal from "../Modal";
 import ListOfPlayList from "../Playlist/ListOfPlayList";
+import { Link } from "react-router-dom";
+import LikeVideos from "../Likes/LikeVideos";
+import ViewsOfVideo from "../Views/ViewsOfVideo";
 
 //This component is used to display the video that is playing
 const Video = ({ video, handleSubscription, status }) => {
@@ -28,38 +31,46 @@ const Video = ({ video, handleSubscription, status }) => {
       </h1>
       <h1 className="pt-4 text-gray-400 font-bold">
         {getTimeDifference(video.createdAt)}
-        <button
-          className="text-white  rounded bg-gray-700 hover:bg-gray-600 p-1 cursor-pointer text-lg float-end"
-          onClick={() => setIsAddToPlayListOpen(true)}
-        >
-          <IoAdd />
-        </button>
       </h1>
-
-      <div className="w-full border-b-2 border-purple-500 my-10"></div>
-      <div className="w-full h-32 flex">
-        <div className="h-20 w-20 bg-black rounded-full">
-          <img
-            src={video.owner.avatar}
-            alt=""
-            className="h-full w-full object-cover rounded-full"
-          />
-        </div>
-        <div className="m-3 text-white">
-          <h1 className="font-bold text-2xl">{video.owner.username}</h1>
-          <h1>
-            <span>{video.owner.Subscriber?.length || 0}</span> Subscribers
-          </h1>
-        </div>
-        <div className="m-3">
+      <div className="flex justify-between">
+        <ViewsOfVideo videoId={video._id} />
+        <div className="flex justify-end gap-2">
+          <LikeVideos videoId={video._id}></LikeVideos>
           <button
-            className="text-white font-bold h-14 w-fit rounded bg-purple-500 hover:bg-purple-600 p-2 cursor-pointer text-lg"
-            onClick={handleSubscription}
+            className="text-white  rounded bg-gray-700 hover:bg-gray-600 p-3 cursor-pointer"
+            onClick={() => setIsAddToPlayListOpen(true)}
           >
-            {status}
+            <IoAdd className="hover:text-purple-500 text-2xl" />
           </button>
         </div>
       </div>
+
+      <div className="w-full border-b-2 border-purple-500 my-10"></div>
+      <Link to="/user" state={{ user: video.owner }}>
+        <div className="w-full h-32 flex">
+          <div className="h-20 w-20 bg-black rounded-full">
+            <img
+              src={video.owner.avatar}
+              alt=""
+              className="h-full w-full object-cover rounded-full"
+            />
+          </div>
+          <div className="m-3 text-white">
+            <h1 className="font-bold text-2xl">{video.owner.username}</h1>
+            <h1>
+              <span>{video.owner.Subscriber?.length || 0}</span> Subscribers
+            </h1>
+          </div>
+          <div className="m-3">
+            <button
+              className="text-white font-bold h-14 w-fit rounded bg-purple-500 hover:bg-purple-600 p-2 cursor-pointer text-lg"
+              onClick={handleSubscription}
+            >
+              {status}
+            </button>
+          </div>
+        </div>
+      </Link>
       {/* a modal to open a new tab over the prev page */}
       <Modal
         isOpen={isAddToPlayListOpen}

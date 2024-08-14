@@ -34,7 +34,7 @@ const Profile = () => {
   }, [axiosPrivate]);
   return (
     <>
-      <div class="container mx-auto h-64 bg-gray-100 mt-11">
+      <div className="container mx-auto h-64 bg-gray-100 mt-11">
         <div className="w-full h-full border-4 border-black relative">
           <MdModeEditOutline
             className="absolute right-0 text-2xl cursor-pointer"
@@ -71,23 +71,27 @@ const Profile = () => {
         </div>
 
         {/* buttons to select various options to select */}
-        <div class="flex justify-around bg-gray-600 p-4 rounded-lg">
+        <div className="flex justify-around bg-gray-600 p-4 rounded-lg">
           <Link to="/profile/pers-videos">
-            <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
               Videos
             </button>
           </Link>
           <Link to="/profile/playlist">
-            <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
               Playlist
             </button>
           </Link>
-          <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
-            Subscribed
-          </button>
-          <button class=" text-white py-2 px-4 rounded hover:bg-gray-700">
-            Tweets
-          </button>
+          <Link to="/profile/subscribed">
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Subscribed
+            </button>
+          </Link>
+          <Link to="/profile/tweets">
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Tweets
+            </button>
+          </Link>
         </div>
         <Outlet></Outlet>
       </div>

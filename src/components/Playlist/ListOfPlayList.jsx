@@ -4,51 +4,53 @@ import PlayListItems from "./PlayListItems";
 import axios from "axios";
 
 const ListOfPlayList = ({ videoId }) => {
-  // console.log(videoId);
   const axiosPrivate = useAxiosPrivate();
-  //stores the playlist List
+  //get playlist list store when it is fetched
   const [playList, setPlayList] = useState([]);
-  //set status of video is added or not
-  const [status, setStatus] = useState();
-  //fetch list of plyalist
+  //store the status of video whether it is present in playlist or not
+  const [statuses, setStatuses] = useState({});
+
+  //fetching list of playlist
   useEffect(() => {
     const getPlayList = async () => {
       const response = await axiosPrivate.get("/api/v1/playlist/get");
-      // console.log("This is playlist", response);
       setPlayList(response.data.data);
     };
     getPlayList();
   }, [axiosPrivate]);
 
-  //adding particular video to playlist (it takes partcular playlist id from arguments)
   const AddVideoToPlayList = async (playlistId) => {
     const response = await axiosPrivate.post(
       `/api/v1/playlist/add-videos/${playlistId}`,
       { videoId }
     );
-    // console.log(response);
+    // You might want to handle the response or update status after adding
   };
 
-  //a func used get status of a video is it added or not
   const getVideoStatus = async (playlistId) => {
-    console.log(playlistId, videoId);
-    const response = await axios.post(
-      `http://localhost:8000/api/v1/playlist/status/${playlistId}`,
-      { videoId }
-    );
-
-    setStatus(response.data.status);
-    console.log(response);
+    try {
+      const response = await axios.post(
+        `http://localhost:8000/api/v1/playlist/status/${playlistId}`,
+        { videoId }
+      );
+      setStatuses((prevStatuses) => ({
+        ...prevStatuses,
+        [playlistId]: response.data.status,
+      }));
+    } catch (error) {
+      console.error("Failed to fetch status:", error);
+    }
   };
+
   return (
     <div className="text-white">
-      {playList.map((playlist, key) => (
+      {playList.map((playlist) => (
         <PlayListItems
           playlist={playlist}
-          key={key}
+          key={playlist._id}
           AddVideoToPlayList={AddVideoToPlayList}
           getVideoStatus={getVideoStatus}
-          status={status}
+          status={statuses[playlist._id] || false} // Default to false if status is not available
         />
       ))}
     </div>

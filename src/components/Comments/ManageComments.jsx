@@ -3,10 +3,13 @@ import CommentsList from "./CommentsList";
 import CommentAdd from "./CommentAdd";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import axios from "axios";
+import useUserId from "../../Hooks/useUserId";
 
-const manageComments = ({ video }) => {
+const ManageComments = ({ video }) => {
   //To catch and set the comments that are recieved and created
   const [comment, setComment] = useState([]);
+
+  const userId = useUserId();
 
   //a useEffect that rerenders when videoId changes to get all comments of a video
   useEffect(() => {
@@ -47,8 +50,15 @@ const manageComments = ({ video }) => {
       { content }
     );
     // console.log(response);
-    // const newComment = response.data.data;
-    // setComment([...comment, newComment]);
+    const newComment = response.data.data;
+    setComment([newComment, ...comment]);
+  };
+
+  const deleteComment = async (commentId) => {
+    const response = await axiosPrivate.delete(
+      `/api/v1/comments/delete/${commentId}`
+    );
+    setComment(comment.filter((comment) => comment._id !== commentId));
   };
 
   return (
@@ -60,9 +70,14 @@ const manageComments = ({ video }) => {
         content={content}
       />
       {/* it checks whether Comments are present or not */}
-      {comment ? (
+      {comment.length > 0 ? (
         comment.map((commentData, key) => (
-          <CommentsList comment={commentData} key={key} />
+          <CommentsList
+            comment={commentData}
+            key={key}
+            deleteComment={deleteComment}
+            userId={userId}
+          />
         ))
       ) : (
         <div className="text-5xl m-10 text-white italic">No comments here</div>
@@ -75,4 +90,4 @@ const manageComments = ({ video }) => {
   );
 };
 
-export default manageComments;
+export default ManageComments;

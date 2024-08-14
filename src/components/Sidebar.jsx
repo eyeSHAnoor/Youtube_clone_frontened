@@ -5,6 +5,7 @@ import { FaHistory } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RiLogoutCircleLine } from "react-icons/ri";
+import { FaRegHeart } from "react-icons/fa";
 import Modal from "./Modal";
 import Logout from "./SignInLogInLogOut/Logout";
 
@@ -47,6 +48,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 History
               </button>
             </li>
+            <Link to="/liked-videos">
+              <li className="flex items-center space-x-2 mt-6">
+                <FaRegHeart className="text-white h-8 w-8" />
+                <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
+                  Liked Videos
+                </button>
+              </li>
+            </Link>
           </ul>
         </div>
         <div className="p-10">

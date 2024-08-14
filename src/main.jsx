@@ -13,6 +13,14 @@ import ChangePwd from "./components/SignInLogInLogOut/ChangePwd.jsx";
 import Logout from "./components/SignInLogInLogOut/Logout.jsx";
 import PersonalVideos from "./components/Profile/PersonalVideos.jsx";
 import PlayList from "./components/Playlist/PlayList.jsx";
+import UserProvider from "./store/UserProvider.jsx";
+import Practice from "./components/Practice.jsx";
+import SubscribedList from "./components/Subscription/SubscribedList.jsx";
+import UserProfile from "./components/Profile/UserProfile.jsx";
+import UserVideos from "./components/Videos/UserVideos.jsx";
+import Tweets from "./components/Tweets/Tweets.jsx";
+import TweetList from "./components/Tweets/TweetList.jsx";
+import LikedVideos from "./components/Videos/LikedVideos.jsx";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +38,14 @@ const router = createBrowserRouter([
           {
             path: "playlist",
             element: <PlayList />,
+          },
+          {
+            path: "subscribed",
+            element: <SubscribedList />,
+          },
+          {
+            path: "tweets",
+            element: <Tweets />,
           },
         ],
       },
@@ -58,6 +74,28 @@ const router = createBrowserRouter([
         path: "/logout",
         element: <Logout />,
       },
+      {
+        path: "/user",
+        element: <UserProfile />,
+        children: [
+          {
+            path: "videos",
+            element: <UserVideos />,
+          },
+          {
+            path: "subscribed",
+            element: <SubscribedList />,
+          },
+          {
+            path: "tweet",
+            element: <Tweets />,
+          },
+        ],
+      },
+      {
+        path: "/liked-videos",
+        element: <LikedVideos />,
+      },
     ],
   },
 ]);
@@ -65,7 +103,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}></RouterProvider>
     </AuthProvider>
   </React.StrictMode>
 );
