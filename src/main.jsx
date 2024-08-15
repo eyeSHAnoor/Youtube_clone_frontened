@@ -21,6 +21,10 @@ import UserVideos from "./components/Videos/UserVideos.jsx";
 import Tweets from "./components/Tweets/Tweets.jsx";
 import TweetList from "./components/Tweets/TweetList.jsx";
 import LikedVideos from "./components/Videos/LikedVideos.jsx";
+import GetUserWatchHistory from "./components/WatchHistory/GetUserWatchHistory.jsx";
+import SubscriberList from "./components/Subscription/SubscriberList.jsx";
+import SubscribedVideos from "./components/Subscription/SubscribedVideos.jsx";
+import SearchVideosList from "./components/Search/SearchVideosList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +51,10 @@ const router = createBrowserRouter([
             path: "tweets",
             element: <Tweets />,
           },
+          {
+            path: "subscriber",
+            element: <SubscriberList />,
+          },
         ],
       },
       {
@@ -54,7 +62,7 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "/home",
+        path: "/",
         element: <VideoList />,
         loader: videoLoader,
       },
@@ -90,11 +98,27 @@ const router = createBrowserRouter([
             path: "tweet",
             element: <Tweets />,
           },
+          {
+            path: "subscriber",
+            element: <SubscriberList />,
+          },
         ],
       },
       {
         path: "/liked-videos",
         element: <LikedVideos />,
+      },
+      {
+        path: "/watch-history",
+        element: <GetUserWatchHistory />,
+      },
+      {
+        path: "/subscription",
+        element: <SubscribedVideos />,
+      },
+      {
+        path: "/search",
+        element: <SearchVideosList />,
       },
     ],
   },

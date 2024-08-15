@@ -5,6 +5,7 @@ import Modal from "./Modal";
 import UploadForm from "./UploadVideo/UploadForm";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import SearchVideo from "./Search/SearchVideo";
 
 const Header = ({ toggleSidebar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -20,11 +21,7 @@ const Header = ({ toggleSidebar }) => {
           </div>
         </div>
         <div className="flex-grow mx-4 justify-center flex">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="md:w-[31rem] sm:hidden md:block p-2 rounded-lg bg-custom-black border border-purple-500 text-white "
-          />
+          <SearchVideo></SearchVideo>
         </div>
         <div className="flex space-x-4">
           <button

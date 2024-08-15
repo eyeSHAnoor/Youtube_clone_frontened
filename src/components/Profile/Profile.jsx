@@ -87,6 +87,11 @@ const Profile = () => {
               Subscribed
             </button>
           </Link>
+          <Link to="/profile/subscriber">
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Subscribers
+            </button>
+          </Link>
           <Link to="/profile/tweets">
             <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
               Tweets

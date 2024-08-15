@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { IoMdMore } from "react-icons/io";
-import { AiOutlineDislike } from "react-icons/ai";
 import useUploadTime from "../../Hooks/useUploadTime";
 import { Link } from "react-router-dom";
 import LikeComment from "../Likes/LikeComment";
+import CommentLikesDisLikes from "../ManageLikesDisLikes/CommentLikesDisLikes";
 
 const CommentsList = ({ comment, deleteComment, userId }) => {
   //This is used to get how long ago comment is created
@@ -38,11 +38,7 @@ const CommentsList = ({ comment, deleteComment, userId }) => {
           <div>
             <p className=" w-full  text-white">{comment.content}</p>
             <div className="flex items-center space-x-2 text-gray-600 ">
-              <LikeComment commentId={comment._id} />
-              <span>Likes</span>
-              <AiOutlineDislike className="active:text-purple-500" />
-              <span>98</span>
-              <span>Dislikes</span>
+              <CommentLikesDisLikes commentId={comment._id} />
             </div>
           </div>
         </div>

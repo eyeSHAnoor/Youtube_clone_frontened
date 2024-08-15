@@ -42,7 +42,7 @@ const SubscribedListItems = ({ subscribed }) => {
           }`}
           disabled={isSubscribed}
         >
-          Subscribed
+          {isSubscribed ? "Subscribed" : "Subscribe"}
         </button>
       </div>
     </div>

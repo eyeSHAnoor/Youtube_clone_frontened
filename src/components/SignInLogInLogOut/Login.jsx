@@ -56,7 +56,7 @@ const Login = () => {
         refreshToken,
       }));
       // navigate to home tab after submission
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error("Login failed:", error);
     } finally {

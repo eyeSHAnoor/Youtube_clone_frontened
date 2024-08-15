@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import Like from "./Like";
 
-const TweetLike = ({ tweetId }) => {
+const TweetLike = ({ tweetId, setDislike, setLike, like }) => {
   const axiosPrivate = useAxiosPrivate();
-  const [like, setLike] = useState(0);
   const [err, setErr] = useState(false);
 
-  console.log(tweetId);
+  // console.log(tweetId);
 
   const handleLikeTweet = async () => {
     try {
@@ -17,6 +16,7 @@ const TweetLike = ({ tweetId }) => {
       );
       // console.log(response);
       setLike((prevLike) => prevLike + 1);
+      setDislike((prevdisLike) => prevdisLike - 1);
     } catch (err) {
       console.log(err);
       setErr(true);
@@ -33,7 +33,7 @@ const TweetLike = ({ tweetId }) => {
       setLike(response?.data?.data?.likesCount);
     };
     fetchNumberOfLikes();
-  }, [axiosPrivate, like, tweetId]);
+  }, [axiosPrivate, tweetId]);
   return <Like like={like} handleLike={handleLikeTweet} err={err} />;
 };
 

@@ -28,26 +28,30 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
         <div className="p-10 flex-grow">
           <ul className="space-y-7">
-            <Link to="/home">
-              <li className="flex items-center space-x-2">
+            <Link to="/">
+              <li className="flex items-center space-x-2 mt-6">
                 <IoHomeOutline className="text-white h-8 w-8" />
                 <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
                   Home
                 </button>
               </li>
             </Link>
-            <li className="flex items-center space-x-2">
-              <MdOutlineSubscriptions className="text-white h-8 w-8" />
-              <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
-                Subscription
-              </button>
-            </li>
-            <li className="flex items-center space-x-2">
-              <FaHistory className="text-white h-8 w-8" />
-              <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
-                History
-              </button>
-            </li>
+            <Link to="/subscription">
+              <li className="flex items-center space-x-2 mt-6">
+                <MdOutlineSubscriptions className="text-white h-8 w-8" />
+                <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
+                  Subscription
+                </button>
+              </li>
+            </Link>
+            <Link to="/watch-history">
+              <li className="flex items-center space-x-2 mt-6">
+                <FaHistory className="text-white h-8 w-8" />
+                <button className="w-full text-left text-white hover:bg-gray-700 p-2 rounded">
+                  History
+                </button>
+              </li>
+            </Link>
             <Link to="/liked-videos">
               <li className="flex items-center space-x-2 mt-6">
                 <FaRegHeart className="text-white h-8 w-8" />

@@ -1,50 +1,48 @@
 import React, { useEffect, useState } from "react";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
-import Like from "./Like";
+import DisLike from "./DisLike";
 
-const LikeVideos = ({ videoId, setDislike, setLike, like }) => {
+const VideoDisLike = ({ videoId, dislike, setDislike, setLike }) => {
   const [err, setErr] = useState(false);
 
   const axiosPrivate = useAxiosPrivate();
-  const handleLikeVideo = async () => {
+  const handleDisLikeVideo = async () => {
     try {
       const response = await axiosPrivate.post(
-        `/api/v1/likes/video/${videoId}`,
+        `/api/v1/dislikes/video/${videoId}`,
         {}
       );
-      // console.log(response);
-      setLike((prevLike) => prevLike + 1);
-      setDislike((prevDislike) => prevDislike - 1);
+      console.log("handle dislike", response);
+      setLike((prevLike) => prevLike - 1);
+      setDislike((prevDislike) => prevDislike + 1);
     } catch (err) {
       console.log(err);
       setErr(true);
     }
   };
-
   useEffect(() => {
     console.log("mounted");
     setErr(false);
-    const fetchNumberOfLikes = async () => {
+    const fetchNumberOfDisLikes = async () => {
       const response = await axiosPrivate.get(
-        `/api/v1/likes/video/get/${videoId}`
+        `/api/v1/dislikes/video/get/${videoId}`
       );
-      console.log("likes of video", response);
-      setLike(response?.data?.data?.likesCount);
+      //   console.log("dislike a video", response);
+      setDislike(response?.data?.data?.dislikesCount);
     };
-    fetchNumberOfLikes();
+    fetchNumberOfDisLikes();
   }, [axiosPrivate]);
   return (
     <>
       <button className="text-white flex gap-1 rounded bg-gray-700 hover:bg-gray-600 p-3 cursor-pointer  ">
-        <Like
-          like={like}
-          handleLike={handleLikeVideo}
+        <DisLike
+          dislike={dislike}
+          handleDisLike={handleDisLikeVideo}
           err={err}
-          className="text-2xl"
         />
       </button>
     </>
   );
 };
 
-export default LikeVideos;
+export default VideoDisLike;

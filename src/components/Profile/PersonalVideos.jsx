@@ -29,9 +29,9 @@ const PersonalVideos = () => {
       {persVideos.length > 0 ? (
         persVideos.map((video, key) => <VideoCard video={video} key={key} />)
       ) : (
-        <p className="text-white text-2xl font-semibold italic">
+        <div className="text-white text-3xl italic text-center py-10">
           No personal videos available.
-        </p>
+        </div>
       )}
     </div>
   );

@@ -2,9 +2,8 @@ import React, { useState, useEffect } from "react";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import Like from "./Like";
 
-const LikeComment = ({ commentId }) => {
+const LikeComment = ({ commentId, setDislike, setLike, like }) => {
   const axiosPrivate = useAxiosPrivate();
-  const [like, setLike] = useState(0);
   const [err, setErr] = useState(false);
 
   const handleLikeComment = async () => {
@@ -15,6 +14,7 @@ const LikeComment = ({ commentId }) => {
       );
       // console.log(response);
       setLike((prevLike) => prevLike + 1);
+      setDislike((prevdisLike) => prevdisLike - 1);
     } catch (err) {
       console.log(err);
       setErr(true);

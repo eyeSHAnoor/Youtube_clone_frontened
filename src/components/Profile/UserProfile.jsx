@@ -67,6 +67,12 @@ const UserProfile = () => {
             </button>
           </Link>
 
+          <Link to="/user/subscriber" state={{ user }}>
+            <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
+              Subscriber
+            </button>
+          </Link>
+
           <Link to="/user/tweet" state={{ user }}>
             <button className=" text-white py-2 px-4 rounded hover:bg-gray-700">
               Tweets

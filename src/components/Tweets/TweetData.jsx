@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { AiOutlineLike } from "react-icons/ai";
-import { AiOutlineDislike } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { IoMdMore } from "react-icons/io";
-import TweetLike from "../Likes/TweetLike";
 import useUserId from "../../Hooks/useUserId";
+import TweetLikesDisLikes from "../ManageLikesDisLikes/TweetLikesDisLikes";
 
 const TweetData = ({ tweet, handleDeleteTweet }) => {
   //tells that the more (three dots) clicked or not
@@ -34,10 +32,7 @@ const TweetData = ({ tweet, handleDeleteTweet }) => {
             </Link>
             <p className="text-gray-400">{tweet.content}</p>
             <div className="flex items-center space-x-2">
-              <TweetLike tweetId={tweet._id} />
-              <AiOutlineDislike />
-              <span>23</span>
-              <span>Dislikes</span>
+              <TweetLikesDisLikes tweetId={tweet._id} />
             </div>
           </div>
         </div>

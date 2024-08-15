@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { MdModeEditOutline } from "react-icons/md";
 import axios from "axios";
+import SignupToLogin from "../Navigations/SignupToLogin";
 
 const SignUp = () => {
   //stores the cover image to display once it selected
   const [cover, setCover] = useState("");
   //stores the avatar to display once it selected
   const [avatar, setAvatar] = useState("");
+
+  //To show You have succefully SignUp
+  const [isSignUpDone, setIsSignUpDone] = useState(false);
 
   //setting the CoverImage as it selected
   const handleCoverFileChange = (e) => {
@@ -41,6 +45,7 @@ const SignUp = () => {
       );
       console.log(response.data);
       // Handle success, e.g., redirect to a different page
+      setIsSignUpDone(true);
     } catch (error) {
       console.error(
         "Error during user signup:",
@@ -176,6 +181,12 @@ const SignUp = () => {
           </button>
         </div>
       </div>
+      {isSignUpDone && (
+        <SignupToLogin
+          setIsSignUpDone={setIsSignUpDone}
+          isSignUpDone={isSignUpDone}
+        />
+      )}
     </form>
   );
 };

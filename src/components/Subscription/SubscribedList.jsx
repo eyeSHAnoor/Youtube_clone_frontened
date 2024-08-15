@@ -37,12 +37,18 @@ const SubscribedList = () => {
 
   return (
     <div>
-      {subscribedList.map((subscribed, key) => (
-        <SubscribedListItems
-          subscribed={subscribed}
-          key={key}
-        ></SubscribedListItems>
-      ))}
+      {subscribedList.length > 0 ? (
+        subscribedList.map((subscribed, key) => (
+          <SubscribedListItems
+            subscribed={subscribed}
+            key={key}
+          ></SubscribedListItems>
+        ))
+      ) : (
+        <div className="text-white text-3xl italic text-center py-10">
+          There is no Subscriber{" "}
+        </div>
+      )}
     </div>
   );
 };
