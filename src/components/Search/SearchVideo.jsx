@@ -6,17 +6,19 @@ const SearchVideo = () => {
   const [videos, setVideos] = useState([]);
   const [error, setError] = useState(null);
 
+  //TO NAVIGATE TO SEARCH PAGE AFTER SEARCHING
   const navigate = useNavigate();
 
-  //?page=1&limit=10&sortBy=createdAt&sortOrder=desc&search=ao
   // Example of query params
   const page = 1;
   const limit = 10;
   const sortBy = "createdAt"; // or 'date', 'views' etc.
   const sortOrder = "desc"; // or 'asc'
 
+  //SET THE VALUE OF SEARCH
   const [search, setSearch] = useState("");
 
+  //WHEN WE PRESS "ENTER" THSI FUNCTION CALLS
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSearchVideo();
@@ -24,6 +26,7 @@ const SearchVideo = () => {
     }
   };
 
+  //THIS HANDLE WHEN WE SEARCH ANYTHING
   const handleSearchVideo = async () => {
     console.log(search);
     try {

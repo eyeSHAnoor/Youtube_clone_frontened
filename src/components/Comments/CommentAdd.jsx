@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { MdDone } from "react-icons/md";
 
 const CommentAdd = ({ video, handleAddComments, setContent, content }) => {
+  //TO FOCUS ON INPUT CONTENT
   const commentRef = useRef();
 
   //it uses to focus on input field

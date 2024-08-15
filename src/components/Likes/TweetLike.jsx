@@ -4,10 +4,12 @@ import Like from "./Like";
 
 const TweetLike = ({ tweetId, setDislike, setLike, like }) => {
   const axiosPrivate = useAxiosPrivate();
+  //ALREADY LIKED OR NOT
   const [err, setErr] = useState(false);
 
   // console.log(tweetId);
 
+  //CLICK LIKE AND I AM CALLED
   const handleLikeTweet = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -23,6 +25,7 @@ const TweetLike = ({ tweetId, setDislike, setLike, like }) => {
     }
   };
 
+  //I'LL COUNT NUMBER OF LIKES FOR YOU
   useEffect(() => {
     console.log("Comment mounted");
     const fetchNumberOfLikes = async () => {

@@ -2,12 +2,21 @@ import React, { useState } from "react";
 import { MdModeEditOutline } from "react-icons/md";
 import axios from "axios";
 import SignupToLogin from "../Navigations/SignupToLogin";
+import Modal from "../Modal";
 
 const SignUp = () => {
   //stores the cover image to display once it selected
   const [cover, setCover] = useState("");
   //stores the avatar to display once it selected
   const [avatar, setAvatar] = useState("");
+
+  //To open a model
+  const [isErrOpen, setIsErrOpen] = useState(false);
+  //set any error regarding the missing entity or any repetive entity
+  const [err, setErr] = useState("");
+
+  //show any error of password as it adds restrictions in setting password
+  const [pwdErr, setPwdErr] = useState("");
 
   //To show You have succefully SignUp
   const [isSignUpDone, setIsSignUpDone] = useState(false);
@@ -33,6 +42,29 @@ const SignUp = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
 
+    //used to access values from formdata
+    const fullname = formData.get("fullname");
+    const username = formData.get("username");
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    //CHECK IF ANY FIELD IS EMPTY OR NOT
+    if (!fullname || !avatar || !username || !email || !password) {
+      setErr("Please complete all the required fields.");
+      setIsErrOpen(true);
+      return;
+    }
+
+    //TO ADD RESTRICTION TO PASSWORD
+    const passwordRegex =
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      setPwdErr(
+        "Password must be at least 8 characters long, contain at least one alphabet, one digit, and one special character."
+      );
+      return;
+    }
+
     try {
       const response = await axios.post(
         "http://localhost:8000/api/v1/users/register",
@@ -43,15 +75,16 @@ const SignUp = () => {
           },
         }
       );
-      console.log(response.data);
-      // Handle success, e.g., redirect to a different page
-      setIsSignUpDone(true);
+      setIsSignUpDone(true); // Show success message
     } catch (error) {
-      console.error(
-        "Error during user signup:",
-        error.response?.data || error.message
-      );
-      // Handle error appropriately
+      //CHECK IF EMAIL OR PASSWORD IS UNIQUE OR NOT
+      if (error.response && error.response.data) {
+        setErr(error.response.data.message);
+        setIsErrOpen(true);
+      } else {
+        setErr("Sign-up failed. Please try again.");
+        setIsErrOpen(true);
+      }
     }
   };
 
@@ -170,6 +203,13 @@ const SignUp = () => {
             className="bg-transparent w-full border-b-2 border-white text-white"
             required
           />
+          {/* Show error if password is not according to requirements */}
+          {pwdErr.length > 0 && (
+            <div className="h-12 w-full p-3 bg-red-500 text-gray-300 flex justify-between">
+              <div>{pwdErr}</div>
+              <button onClick={() => setPwdErr("")}>&times;</button>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center justify-end mt-14">
@@ -181,12 +221,17 @@ const SignUp = () => {
           </button>
         </div>
       </div>
+      {/* This navigate us from sign up to login page */}
       {isSignUpDone && (
         <SignupToLogin
           setIsSignUpDone={setIsSignUpDone}
           isSignUpDone={isSignUpDone}
         />
       )}
+      {/* to show any signup error */}
+      <Modal isOpen={isErrOpen} onClose={() => setIsErrOpen(false)}>
+        <div className="text-white text-lg italic">{err}</div>
+      </Modal>
     </form>
   );
 };

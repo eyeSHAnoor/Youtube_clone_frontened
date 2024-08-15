@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { IoMdMore } from "react-icons/io";
 import useUploadTime from "../../Hooks/useUploadTime";
 import { Link } from "react-router-dom";
-import LikeComment from "../Likes/LikeComment";
 import CommentLikesDisLikes from "../ManageLikesDisLikes/CommentLikesDisLikes";
 
 const CommentsList = ({ comment, deleteComment, userId }) => {
   //This is used to get how long ago comment is created
   const getTimeDifference = useUploadTime();
+  //A MENUE OPENS TO GIVE DELETE OPTION
   const [isMenueOpen, setIsMenueOpen] = useState(false);
   //toggle a menue as clicked true or not
   const toggleMenue = () => {
@@ -38,6 +38,7 @@ const CommentsList = ({ comment, deleteComment, userId }) => {
           <div>
             <p className=" w-full  text-white">{comment.content}</p>
             <div className="flex items-center space-x-2 text-gray-600 ">
+              {/* THIS IS USED TO MANAGE LIKE AND DISLIKE OF PARTICULAR COMMENT */}
               <CommentLikesDisLikes commentId={comment._id} />
             </div>
           </div>

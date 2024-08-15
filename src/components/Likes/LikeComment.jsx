@@ -4,8 +4,10 @@ import Like from "./Like";
 
 const LikeComment = ({ commentId, setDislike, setLike, like }) => {
   const axiosPrivate = useAxiosPrivate();
+  //IT SETS THE ERROR IF U ALREADY LIKED IT
   const [err, setErr] = useState(false);
 
+  //AFTER PRESSING THE LIKED BUTTON
   const handleLikeComment = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -21,6 +23,7 @@ const LikeComment = ({ commentId, setDislike, setLike, like }) => {
     }
   };
 
+  //FETCH LIKE COUNTS
   useEffect(() => {
     console.log("Comment mounted");
     const fetchNumberOfLikes = async () => {

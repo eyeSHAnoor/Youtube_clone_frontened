@@ -12,6 +12,10 @@ const Logout = ({ onNo }) => {
       const resp = await axiosPrivate.post("/api/v1/users/logout", {});
       console.log(resp.data.message);
       setRes(resp.data.message);
+
+      setTimeout(() => {
+        window.location.reload(); // This reloads the page
+      }, 1000); // Adjust delay as needed
     } catch (error) {
       console.error("Error logging out:", error);
       // Handle the error case as needed

@@ -6,6 +6,7 @@ const Like = ({ like, handleLike, err }) => {
   return (
     <>
       <div className="flex items-center space-x-1">
+        {/* CHECK IF ALREADY LIKED OR NOT */}
         {!err ? (
           <AiOutlineLike
             className="hover:text-purple-500"

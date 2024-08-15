@@ -16,9 +16,13 @@ const LikedVideos = () => {
   }, [axiosPrivate]);
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-9 m-14">
-      {video.map((videoData, key) => (
-        <VideoCard video={videoData} key={key} />
-      ))}
+      {video.length > 0 ? (
+        video.map((videoData, key) => <VideoCard video={videoData} key={key} />)
+      ) : (
+        <div className="text-white text-2xl italic">
+          There is no Liked Video
+        </div>
+      )}
     </div>
   );
 };

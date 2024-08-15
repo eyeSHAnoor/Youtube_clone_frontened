@@ -3,11 +3,12 @@ import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import DisLike from "./DisLike";
 
 const CommentDisLike = ({ commentId, dislike, setDislike, setLike }) => {
+  //IT TELLS IF ALREADY DISLIKED OR NOT
   const [err, setErr] = useState(false);
 
-  console.log("dislike");
-
   const axiosPrivate = useAxiosPrivate();
+
+  //WHEN SOMEONE DISLIKE (REMOVES IT FROM LIKES )
   const handleDisLikeComment = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -22,6 +23,8 @@ const CommentDisLike = ({ commentId, dislike, setDislike, setLike }) => {
       setErr(true);
     }
   };
+
+  //COLLECT THE TOTAL NUMBER OF DISLIKES
   useEffect(() => {
     console.log("mounted");
     setErr(false);

@@ -4,12 +4,15 @@ import { IoAdd } from "react-icons/io5";
 
 const AddTweet = ({ handleAddTweet }) => {
   const [isVisible, setIsVisible] = useState(false);
+  //STORE TWEET CONTENT
   const [tweetContent, setTweetContent] = useState("");
 
+  //THE INPUT BAR IS VISIBLE OR NOT
   const handleSlideIn = () => {
     setIsVisible((prev) => !prev);
   };
 
+  //WE CAN ALSO ADD TWEET BY PRESSING "ENTER"
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleAddTweet(tweetContent);
@@ -49,13 +52,13 @@ const AddTweet = ({ handleAddTweet }) => {
             placeholder="Tweet here"
             value={tweetContent}
             onChange={(e) => setTweetContent(e.target.value)}
-            onKeyDown={handleKeyDown} // Add this line to listen for the Enter key
+            onKeyDown={handleKeyDown}
           />
           <button
             type="submit"
             onClick={() => {
               handleAddTweet(tweetContent);
-              setTweetContent(""); // Clear the input field after adding the tweet
+              setTweetContent("");
             }}
           >
             <MdDone className="text-3xl" />

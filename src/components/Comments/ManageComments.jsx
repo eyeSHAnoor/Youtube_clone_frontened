@@ -9,6 +9,7 @@ const ManageComments = ({ video }) => {
   //To catch and set the comments that are recieved and created
   const [comment, setComment] = useState([]);
 
+  //STORES THE USERID OF CURRENT USER OR OWNER OF COMMENT
   const userId = useUserId();
 
   //a useEffect that rerenders when videoId changes to get all comments of a video

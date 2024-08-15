@@ -3,9 +3,11 @@ import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import Like from "./Like";
 
 const LikeVideos = ({ videoId, setDislike, setLike, like }) => {
+  //ALREADY LIKED OR NOT
   const [err, setErr] = useState(false);
 
   const axiosPrivate = useAxiosPrivate();
+  //HANDLE LIKE BUTTON
   const handleLikeVideo = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -21,6 +23,7 @@ const LikeVideos = ({ videoId, setDislike, setLike, like }) => {
     }
   };
 
+  //COUNT NUMBER OF LIKES
   useEffect(() => {
     console.log("mounted");
     setErr(false);

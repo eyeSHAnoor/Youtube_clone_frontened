@@ -4,11 +4,14 @@ import { useLocation } from "react-router-dom";
 import VideoCard from "./VideoCard";
 
 const UserVideos = () => {
+  //TAKE USER FROM PREV LOCATION
   const location = useLocation();
   const user = location?.state?.user || {};
   const axiosPrivate = useAxiosPrivate();
 
+  //SET ANY UERS PERSONAL VIDEOS
   const [video, setVideo] = useState([]);
+  //FETCH THOSE VIDEOS
   useEffect(() => {
     const fetchUserVideos = async () => {
       const response = await axiosPrivate.get(`/api/v1/videos/get/${user._id}`);

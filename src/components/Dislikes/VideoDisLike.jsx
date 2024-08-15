@@ -3,9 +3,11 @@ import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import DisLike from "./DisLike";
 
 const VideoDisLike = ({ videoId, dislike, setDislike, setLike }) => {
+  //WHETHER ALREADY DL OR NOT
   const [err, setErr] = useState(false);
 
   const axiosPrivate = useAxiosPrivate();
+  //PRESS THE DISLIKE BUTTON AND IT CALLS
   const handleDisLikeVideo = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -20,6 +22,8 @@ const VideoDisLike = ({ videoId, dislike, setDislike, setLike }) => {
       setErr(true);
     }
   };
+
+  //FETCH NUMBER OF DISLIKES
   useEffect(() => {
     console.log("mounted");
     setErr(false);

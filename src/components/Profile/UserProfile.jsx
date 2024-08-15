@@ -3,13 +3,16 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 
 const UserProfile = () => {
+  //TAKE USER FROM THE PREV LOCATION
   const location = useLocation();
   const { user } = location.state || {};
 
   const axiosPrivate = useAxiosPrivate();
 
+  //SET THE DETAILS OF USER
   const [userDetails, setUserDetails] = useState([]);
 
+  //FETCH DETAILS OF USER THROUGH ITX USERNAME
   useEffect(() => {
     const getUserProfile = async () => {
       const response = await axiosPrivate.get(

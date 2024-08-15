@@ -3,11 +3,12 @@ import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
 import DisLike from "./DisLike";
 
 const TweetDisLike = ({ tweetId, dislike, setDislike, setLike }) => {
+  //TELLS IF SOMEONE ALREADY DL OR NOT
   const [err, setErr] = useState(false);
 
-  console.log("dislike");
-
   const axiosPrivate = useAxiosPrivate();
+
+  //CLICK THE DISLIKE
   const handleDisLikeTweet = async () => {
     try {
       const response = await axiosPrivate.post(
@@ -22,6 +23,7 @@ const TweetDisLike = ({ tweetId, dislike, setDislike, setLike }) => {
       setErr(true);
     }
   };
+  //FETCH NUMBER OF DISLIKES
   useEffect(() => {
     console.log("mounted");
     setErr(false);

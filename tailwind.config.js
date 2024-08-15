@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        "custom-black": "#1e293b",
+        "custom-black": "#171717",
       },
     },
   },

@@ -9,6 +9,7 @@ import SearchVideo from "./Search/SearchVideo";
 
 const Header = ({ toggleSidebar }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <header className="bg-custom-black p-4 flex justify-between items-center w-screen">

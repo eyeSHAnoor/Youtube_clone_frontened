@@ -5,6 +5,7 @@ import { FaBan } from "react-icons/fa";
 const DisLike = ({ dislike, handleDisLike, err }) => {
   return (
     <div className="flex items-center space-x-1">
+      {/* CHECK IF ALREADY DISLIKED OR NOT  */}
       {!err ? (
         <AiOutlineDislike
           className="hover:text-purple-500"

@@ -4,6 +4,7 @@ import TweetData from "./TweetData";
 const TweetList = ({ tweet, handleDeleteTweet }) => {
   return (
     <>
+      {/* CHECK IF TWEETS AVAILABLE OR NOT */}
       {tweet.length > 0 ? (
         tweet.map((tweetdata, key) => (
           <TweetData

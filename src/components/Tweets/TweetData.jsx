@@ -7,6 +7,7 @@ import TweetLikesDisLikes from "../ManageLikesDisLikes/TweetLikesDisLikes";
 const TweetData = ({ tweet, handleDeleteTweet }) => {
   //tells that the more (three dots) clicked or not
   const [isMenueOpen, setIsMenueOpen] = useState(false);
+  //ON OFF
   const toggleMenue = () => {
     setIsMenueOpen(!isMenueOpen);
   };
