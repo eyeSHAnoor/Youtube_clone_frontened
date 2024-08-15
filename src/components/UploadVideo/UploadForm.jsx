@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useAxiosPrivate from "../../Hooks/useAxiosPrivate";
+import Loading from "../Loading";
 
 const UploadForm = () => {
   //Aform that is used to upload a video
@@ -19,6 +20,9 @@ const UploadForm = () => {
 
   //stores response once video is uploaded
   const [res, setRes] = useState("");
+
+  //show video is uploading
+  const [loading, setLoading] = useState(false);
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -55,6 +59,8 @@ const UploadForm = () => {
     formData.append("title", title);
     formData.append("description", description);
 
+    setLoading(true);
+
     try {
       const response = await axiosPrivate.post(
         "/api/v1/videos/upload-video",
@@ -75,104 +81,118 @@ const UploadForm = () => {
         error.response?.data || error.message
       );
       // Handle error appropriately
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <>
-      {/* checks whether file is uploaded or not */}
-      {res === "" ? (
+    <div>
+      {loading ? (
+        <Loading />
+      ) : (
         <>
-          <h2 className="text-xl font-bold mb-4 text-white">Upload Video</h2>
-          <div className="w-full mb-5 border-b-2 border-gray-500"></div>
+          {/* checks whether file is uploaded or not */}
+          {res === "" ? (
+            <>
+              <h2 className="text-xl font-bold mb-4 text-white">
+                Upload Video
+              </h2>
+              <div className="w-full mb-5 border-b-2 border-gray-500"></div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-4"
-            encType="multipart/form-data"
-            method="POST"
-          >
-            {/* upload video */}
-            <div className="h-56 w-full relative border-2 border-white">
-              <p className="text-white text-xl absolute bottom-28 left-32">
-                Upload your file here
-              </p>
-              <label
-                htmlFor="video-upload"
-                className="absolute bottom-10 left-44 text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer"
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-4"
+                encType="multipart/form-data"
+                method="POST"
               >
-                Upload
-              </label>
-              <input
-                type="file"
-                id="video-upload"
-                accept="video/*"
-                onChange={handleVideoChange}
-                className="hidden"
-              />
-              {videoImage && (
-                <img
-                  src={videoImage}
-                  alt="Video Preview"
-                  className="h-full w-full object-cover"
-                />
-              )}
-            </div>
-            <div className="border-2 h-14 mt-4 ml-2 border-white flex">
-              <label
-                htmlFor="thumbnail"
-                className="text-white font-bold h-10 w-1/4 m-2 rounded bg-purple-500 p-2 pl-5 cursor-pointer"
-              >
-                Thumbnail:
-              </label>
-              <input
-                type="file"
-                id="thumbnail"
-                accept="image/*"
-                onChange={handleThumbnailChange}
-                className="hidden"
-              />
-              {/* {thumbnailImage && (
+                {/* upload video */}
+                <div className="h-56 w-full relative border-2 border-white">
+                  <p className="text-white text-xl absolute bottom-28 left-32">
+                    Upload your file here
+                  </p>
+                  <label
+                    htmlFor="video-upload"
+                    className="absolute bottom-10 left-44 text-white font-bold h-10 w-24 rounded bg-purple-500 p-2 pl-5 cursor-pointer"
+                  >
+                    Upload
+                  </label>
+                  <input
+                    type="file"
+                    id="video-upload"
+                    accept="video/*"
+                    onChange={handleVideoChange}
+                    className="hidden"
+                  />
+                  {videoImage && (
+                    <img
+                      src={videoImage}
+                      alt="Video Preview"
+                      className="h-full w-full object-cover"
+                    />
+                  )}
+                </div>
+                <div className="border-2 h-14 mt-4 ml-2 border-white flex">
+                  <label
+                    htmlFor="thumbnail"
+                    className="text-white font-bold h-10 w-1/4 m-2 rounded bg-purple-500 p-2 pl-5 cursor-pointer"
+                  >
+                    Thumbnail:
+                  </label>
+                  <input
+                    type="file"
+                    id="thumbnail"
+                    accept="image/*"
+                    onChange={handleThumbnailChange}
+                    className="hidden"
+                  />
+                  {/* {thumbnailImage && (
             <img
               src={thumbnailImage}
               alt="Thumbnail Preview"
               className="h-full w-full object-cover"
             />
           )} */}
-              <div className="text-white">{thumbnailImage}</div>
+                  <div className="text-white">{thumbnailImage}</div>
+                </div>
+                <div>
+                  <label className="block mb-2 text-white font-bold">
+                    Title:
+                  </label>
+                  <input
+                    type="text"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="w-full p-2 border rounded bg-transparent text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-white font-bold">
+                    Description:
+                  </label>
+                  <input
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                    className="w-full p-2 border rounded bg-transparent text-white"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="bg-purple-500 text-white px-4 py-2 float-end rounded"
+                >
+                  Upload
+                </button>
+              </form>
+            </>
+          ) : (
+            <div className="text-white text-xl italic text-center m-9">
+              {res}{" "}
             </div>
-            <div>
-              <label className="block mb-2 text-white font-bold">Title:</label>
-              <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                className="w-full p-2 border rounded bg-transparent text-white"
-              />
-            </div>
-            <div>
-              <label className="block mb-2 text-white font-bold">
-                Description:
-              </label>
-              <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                className="w-full p-2 border rounded bg-transparent text-white"
-              />
-            </div>
-            <button
-              type="submit"
-              className="bg-purple-500 text-white px-4 py-2 float-end rounded"
-            >
-              Upload
-            </button>
-          </form>
+          )}
         </>
-      ) : (
-        <div className="text-white text-xl italic text-center m-9">{res} </div>
       )}
-    </>
+    </div>
   );
 };
 
